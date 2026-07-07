@@ -1,0 +1,6 @@
+dept_id,dept_name,dept_head,region,cost_centre_flag
+1,Sales,Priya Nair,South,0
+2,Marketing,Arjun Mehta,South,0
+3,Operations,Divya Sharma,West,0
+4,Human Resources,Rahul Iyer,South,1
+5,IT,Sneha Krishnan,South,1
