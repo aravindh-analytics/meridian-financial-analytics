@@ -1,0 +1,50 @@
+-- ============================================================
+-- SCRIPT 01: Revenue Trends Analysis
+-- Project:   Meridian Retail Group — Financial Analytics
+-- Author:    Aravindh R
+-- Purpose:   Monthly company-wide revenue, cost, gross profit,
+--            and net margin for Actual scenario across 3 years
+-- Output:    36 rows (12 months × 3 years)
+-- Powers:    Page 1 — Revenue Overview (Power BI)
+-- Audience:  CEO, Board of Directors
+-- ============================================================
+
+USE meridian_financials;
+
+SELECT
+    d.year,
+    d.quarter,
+    d.month_name,
+    d.month_num,
+
+    -- Total actual revenue across all departments for that month
+    SUM(f.revenue)                                          AS Revenue,
+
+    -- Total actual cost across all departments for that month
+    SUM(f.cost)                                             AS Cost,
+
+    -- Gross Profit = Revenue minus Cost
+    SUM(f.revenue) - SUM(f.cost)                            AS Gross_Profit,
+
+    -- Net Margin % — NULLIF prevents division by zero
+    ROUND(
+        (SUM(f.revenue) - SUM(f.cost)) * 100
+        / NULLIF(SUM(f.revenue), 0)
+    , 2)                                                    AS Net_Margin_Pct
+
+FROM financials     f
+JOIN `date`         d  ON f.date_id     = d.date_id
+JOIN scenario       s  ON f.scenario_id = s.scenario_id
+
+-- CRITICAL: Actuals only — prevents double-counting Budget rows
+WHERE s.scenario_name = 'Actual'
+
+GROUP BY
+    d.year,
+    d.quarter,
+    d.month_name,
+    d.month_num
+
+ORDER BY
+    d.year      ASC,
+    d.month_num ASC;
