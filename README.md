@@ -94,12 +94,6 @@ The CFO's exact complaint:
 
 ---
 
-## Dashboard Screenshots
-
-[Add 6 screenshots here — one per page]
-
----
-
 ## How to Use This Project
 
 1. Clone the repo or download the zip
@@ -112,5 +106,5 @@ The CFO's exact complaint:
 
 ## Connect
 
-LinkedIn: [Your LinkedIn URL]  
-Email: [Your professional email]
+LinkedIn: https://shorturl.at/Os6HR 
+Email: aravindh.r0601@gmail.com
